@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export const Root = ({ children }: { children: ReactNode }) => {
   return (
-    <Grid rows="2" columns="1">
+    <Grid rows="50px 1fr" columns="1">
       {children}
     </Grid>
   )
@@ -15,7 +15,6 @@ export const Nav = () => {
     <Flex>
       <Link to="/">Home</Link>
       <Link to="/users">Users</Link>
-      <Link to="/users/groups">Groups</Link>
     </Flex>
   )
 }

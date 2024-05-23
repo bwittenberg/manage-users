@@ -11,5 +11,15 @@ export default defineConfig({
     environment: 'happy-dom',
     setupFiles: '.vitest/setup',
     include: ['**/*.test.{ts,tsx}']
+  },
+  server: {
+    // https://vitejs.dev/config/server-options#server-proxy
+    proxy: {
+      '/api': {
+        target: 'https://front-end-code-challenge.stephenbuilds.workers.dev',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   }
 })

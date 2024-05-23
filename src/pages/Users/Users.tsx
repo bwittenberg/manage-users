@@ -1,6 +1,7 @@
+import { gql, useQuery } from '@apollo/client'
 import * as Layout from 'components/Layout'
-import { Tabs, Link } from '@radix-ui/themes'
-import { Routes, Route } from 'react-router-dom'
+import { Tabs, Link as RadixLink, Table, Avatar } from '@radix-ui/themes'
+import { Routes, Route, Link } from 'react-router-dom'
 import { PropsWithChildren } from 'react'
 
 export const Users = () => {
@@ -38,10 +39,14 @@ const TabsLayout = ({ value, children }: TabsLayoutProps) => {
         <Tabs.Root value={value}>
           <Tabs.List>
             <Tabs.Trigger value="list">
-              <Link>List</Link>
+              <RadixLink asChild>
+                <Link to="/users">List</Link>
+              </RadixLink>
             </Tabs.Trigger>
             <Tabs.Trigger value="groups">
-              <Link>Groups</Link>
+              <RadixLink asChild>
+                <Link to="/users/groups">Groups</Link>
+              </RadixLink>
             </Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value={value}>{children}</Tabs.Content>
@@ -51,8 +56,53 @@ const TabsLayout = ({ value, children }: TabsLayoutProps) => {
   )
 }
 
+type User = {
+  first: string
+  last: string
+  role: string
+  photo: string
+}
+
+const UsersListQuery = gql(/* GraphQL */ `
+  query UsersListQuery {
+    users @rest(type: "User", path: "/users") {
+      first
+      last
+      role
+      photo
+    }
+  }
+`)
+
 const List = () => {
-  return <>Hello List</>
+  const { data } = useQuery<{ users: User[] }>(UsersListQuery)
+
+  return (
+    <Table.Root>
+      <Table.Header>
+        <Table.Row>
+          <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell>First</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell>Last</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell>Role</Table.ColumnHeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {data?.users.map((user, index) => {
+          return (
+            <Table.Row key={index}>
+              <Table.RowHeaderCell>
+                <Avatar src={user.photo} fallback={user.first} />
+              </Table.RowHeaderCell>
+              <Table.Cell>{user.first}</Table.Cell>
+              <Table.Cell>{user.last}</Table.Cell>
+              <Table.Cell>{user.role}</Table.Cell>
+            </Table.Row>
+          )
+        })}
+      </Table.Body>
+    </Table.Root>
+  )
 }
 
 const Groups = () => {
