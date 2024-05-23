@@ -2,6 +2,7 @@ import { TypedDocumentNode, gql, useQuery } from '@apollo/client'
 import { Table } from '@radix-ui/themes'
 import { Row } from './UserRow'
 import type { User } from 'gql/User'
+import { useMemo } from 'react'
 
 const UsersListQuery = gql(/* GraphQL */ `
   query UsersListQuery {
@@ -16,8 +17,19 @@ const UsersListQuery = gql(/* GraphQL */ `
   }
 `) as TypedDocumentNode<{ users: User[] }>
 
-export const UserTable = () => {
+type Props = {
+  sortFn?: (a: User, b: User) => number
+}
+
+const defaultSortFn: Props['sortFn'] = (a, b) => a.last.localeCompare(b.last)
+
+export const UserTable = ({ sortFn = defaultSortFn }: Props) => {
   const { data } = useQuery(UsersListQuery)
+
+  const sorted = useMemo(
+    () => data?.users.toSorted(sortFn) ?? [],
+    [data?.users, sortFn]
+  )
 
   return (
     <Table.Root>
@@ -31,7 +43,7 @@ export const UserTable = () => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {data?.users.map((user) => {
+        {sorted.map((user) => {
           return <Row key={user.id} {...user} />
         })}
       </Table.Body>

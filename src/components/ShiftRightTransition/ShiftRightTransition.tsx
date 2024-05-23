@@ -13,6 +13,7 @@ export const ShiftRightTransition = <T extends Ref<HTMLElement>>({
     <CSSTransition
       nodeRef={nodeRef}
       in={animateIn}
+      appear={animateIn}
       timeout={200}
       classNames={{ ...m }}
     >

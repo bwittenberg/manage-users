@@ -13,11 +13,12 @@ type Props = {
 }
 
 export const Row = ({ id, isAdmin, first, last, role, photo }: Props) => {
+  const ref = useRef<HTMLTableRowElement | null>(null)
   const toggleIsAdmin = useToggleIsAdmin({
     userId: id,
     isAdmin: isAdmin
   })
-  const ref = useRef<HTMLTableRowElement | null>(null)
+
   return (
     <ShiftRightTransition nodeRef={ref} in={isAdmin}>
       <Table.Row ref={ref}>

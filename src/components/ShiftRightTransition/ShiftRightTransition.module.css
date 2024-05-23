@@ -1,3 +1,11 @@
+.appear {
+  left: 50px;
+  position: relative;
+}
+.appearDone {
+  left: 50px;
+  position: relative;
+}
 .enter {
   left: 0;
   position: relative;

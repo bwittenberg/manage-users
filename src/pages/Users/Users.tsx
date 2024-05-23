@@ -11,7 +11,7 @@ export const Users = () => {
         path="/"
         element={
           <TabsLayout value="list">
-            <UserTable />
+            <UserTable key="list" />
           </TabsLayout>
         }
       />
@@ -19,7 +19,10 @@ export const Users = () => {
         path="/groups"
         element={
           <TabsLayout value="groups">
-            <Groups />
+            <UserTable
+              key="groups"
+              sortFn={(a, b) => (a.isAdmin && !b.isAdmin ? -1 : 1)}
+            />
           </TabsLayout>
         }
       />
@@ -54,8 +57,4 @@ const TabsLayout = ({ value, children }: TabsLayoutProps) => {
       </Layout.Content>
     </Layout.Root>
   )
-}
-
-const Groups = () => {
-  return <>Hello Groups</>
 }
