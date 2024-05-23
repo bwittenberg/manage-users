@@ -4,7 +4,7 @@ App to manage user privileges.
 
 # Requirements
 
-- [ ] View members in a tab
+- [x] View members in a tab
 - [ ] Toggle admin privileges for member
   - must use checkbox, when checked, should animate 50px to the right
 - [ ] View groups of members in a second tab
@@ -22,6 +22,8 @@ App to manage user privileges.
 - [ ] add themes
 - [ ] add navigation paths and types
 - [ ] add codegen for GraphQL types
+- [ ] add a real field to the API for admin or persist cache for experiment
+- [ ] would add sorting and select all to table, and would not be client side sort
 
 # Non-functional
 
