@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api:match*",
-      "destination": "https://front-end-code-challenge.stephenbuilds.workers.dev:match*"
+      "source": "/api/:match*",
+      "destination": "https://front-end-code-challenge.stephenbuilds.workers.dev/:match*"
     }
   ]
 }

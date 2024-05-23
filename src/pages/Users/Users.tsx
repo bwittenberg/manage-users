@@ -65,7 +65,7 @@ type User = {
 
 const UsersListQuery = gql(/* GraphQL */ `
   query UsersListQuery {
-    users @rest(type: "User", path: "/") {
+    users @rest(type: "User", path: "/users") {
       first
       last
       role
