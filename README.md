@@ -4,10 +4,10 @@ App to manage user privileges.
 
 # Requirements
 
-- [x] View members in a tab
+- [ ] View members in a tab
 - [ ] Toggle admin privileges for member
   - must use checkbox, when checked, should animate 50px to the right
-- [ ] View groups of members in a second tab
+- [ ] On the second tab, show the same roster but grouped into “admin” or “standard” groups based on the selections from the first tab
 - [ ] Font must be custom
 - [ ] responsive layout, check on desktop and mobile
   - Ben's note: use css container queries?
@@ -15,6 +15,7 @@ App to manage user privileges.
 
 # Ideas
 
+- [ ] candidate trivia for login, last try is "how do you pronounce radix"
 - [ ] settings panel to toggle light/dark theme?
 - [ ] deep linking to pages and panels
 - [ ] record video demo
