@@ -21,6 +21,7 @@ App to manage user privileges.
 - [ ] favicon
 - [ ] add themes
 - [ ] add navigation paths and types
+- [ ] add codegen for GraphQL types
 
 # Non-functional
 
