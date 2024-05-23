@@ -5,7 +5,7 @@ App to manage user privileges.
 # Requirements
 
 - [ ] View members in a tab
-- [ ] Toggle admin privlidges for member
+- [ ] Toggle admin privileges for member
   - must use checkbox, when checked, should animate 50px to the right
 - [ ] View groups of members in a second tab
 - [ ] Font must be custom
@@ -13,14 +13,14 @@ App to manage user privileges.
   - Ben's note: use css container queries?
 - [ ] render loading states
 
-
-
 # Ideas
 
 - [ ] settings panel to toggle light/dark theme?
 - [ ] deep linking to pages and panels
 - [ ] record video demo
 - [ ] favicon
+- [ ] add themes
+- [ ] add navigation paths and types
 
 # Non-functional
 
