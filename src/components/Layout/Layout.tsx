@@ -20,5 +20,5 @@ export const Nav = () => {
 }
 
 export const Content = ({ children }: { children: ReactNode }) => {
-  return <Flex>{children}</Flex>
+  return <>{children}</>
 }

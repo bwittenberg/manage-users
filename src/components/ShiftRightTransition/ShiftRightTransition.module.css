@@ -1,0 +1,22 @@
+.enter {
+  left: 0;
+  position: relative;
+}
+.enterActive {
+  left: 50px;
+  position: relative;
+  transition: left 200ms;
+}
+.enterDone {
+  left: 50px;
+  position: relative;
+}
+.exit {
+  left: 50px;
+  position: relative;
+}
+.exitActive {
+  left: 0;
+  position: relative;
+  transition: left 200ms;
+}

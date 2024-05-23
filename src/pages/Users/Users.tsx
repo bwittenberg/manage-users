@@ -1,8 +1,8 @@
-import { gql, useQuery } from '@apollo/client'
 import * as Layout from 'components/Layout'
-import { Tabs, Link as RadixLink, Table, Avatar } from '@radix-ui/themes'
+import { Tabs, Link as RadixLink } from '@radix-ui/themes'
 import { Routes, Route, Link } from 'react-router-dom'
 import { PropsWithChildren } from 'react'
+import { UserTable } from 'gql/UserTable'
 
 export const Users = () => {
   return (
@@ -11,7 +11,7 @@ export const Users = () => {
         path="/"
         element={
           <TabsLayout value="list">
-            <List />
+            <UserTable />
           </TabsLayout>
         }
       />
@@ -53,55 +53,6 @@ const TabsLayout = ({ value, children }: TabsLayoutProps) => {
         </Tabs.Root>
       </Layout.Content>
     </Layout.Root>
-  )
-}
-
-type User = {
-  first: string
-  last: string
-  role: string
-  photo: string
-}
-
-const UsersListQuery = gql(/* GraphQL */ `
-  query UsersListQuery {
-    users @rest(type: "User", path: "/users") {
-      first
-      last
-      role
-      photo
-    }
-  }
-`)
-
-const List = () => {
-  const { data } = useQuery<{ users: User[] }>(UsersListQuery)
-
-  return (
-    <Table.Root>
-      <Table.Header>
-        <Table.Row>
-          <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>First</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Last</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Role</Table.ColumnHeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {data?.users.map((user, index) => {
-          return (
-            <Table.Row key={index}>
-              <Table.RowHeaderCell>
-                <Avatar src={user.photo} fallback={user.first} />
-              </Table.RowHeaderCell>
-              <Table.Cell>{user.first}</Table.Cell>
-              <Table.Cell>{user.last}</Table.Cell>
-              <Table.Cell>{user.role}</Table.Cell>
-            </Table.Row>
-          )
-        })}
-      </Table.Body>
-    </Table.Root>
   )
 }
 
