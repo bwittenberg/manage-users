@@ -19,6 +19,8 @@ App to manage user privileges.
 - [ ] deep linking to pages and panels
 - [ ] record video demo
 - [ ] favicon
+- [ ] add themes
+- [ ] add navigation paths and types
 
 # Non-functional
 
