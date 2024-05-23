@@ -11,7 +11,7 @@ export const Users = () => {
         path="/"
         element={
           <TabsLayout value="list">
-            <UserTable />
+            <UserTable key="list" />
           </TabsLayout>
         }
       />
@@ -19,7 +19,10 @@ export const Users = () => {
         path="/groups"
         element={
           <TabsLayout value="groups">
-            <UserTable sortFn={(a, b) => (a.isAdmin && !b.isAdmin ? -1 : 1)} />
+            <UserTable
+              key="groups"
+              sortFn={(a, b) => (a.isAdmin && !b.isAdmin ? -1 : 1)}
+            />
           </TabsLayout>
         }
       />
