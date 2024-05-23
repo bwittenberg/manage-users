@@ -5,15 +5,13 @@ App to manage user privileges.
 # Requirements
 
 - [ ] View members in a tab
-- [ ] Toggle admin privlidges for member
+- [ ] Toggle admin privileges for member
   - must use checkbox, when checked, should animate 50px to the right
 - [ ] View groups of members in a second tab
 - [ ] Font must be custom
 - [ ] responsive layout, check on desktop and mobile
   - Ben's note: use css container queries?
 - [ ] render loading states
-
-
 
 # Ideas
 
