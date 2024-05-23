@@ -23,6 +23,7 @@ App to manage user privileges.
 - [ ] add navigation paths and types
 - [ ] add codegen for GraphQL types
 - [ ] add a real field to the API for admin or persist cache for experiment
+- [ ] would add sorting and select all to table, and would not be client side sort
 
 # Non-functional
 
