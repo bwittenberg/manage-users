@@ -25,6 +25,8 @@ App to manage user privileges.
 - [ ] add a real field to the API for admin or persist cache for experiment
 - [ ] would add sorting and select all to table, and would not be client side sort
 - [ ] deep linking
+- [ ] home should show charts
+- [ ] collapse menu on mobile
 
 # Non-functional
 
