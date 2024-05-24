@@ -4,9 +4,9 @@ App to manage user privileges.
 
 # Features
 
-- Visit https://workos.bwittenberg.com/users to update the admin status for each user.
+- Visit https://manage-users.bwittenberg.com/users to update the admin status for each user.
   - Loading states are rendered with skeleton placeholders.
-- Visit https://workos.bwittenberg.com/users/groups to see users grouped by admin status, and to update admin status.
+- Visit https://manage-users.bwittenberg.com/users/groups to see users grouped by admin status, and to update admin status.
   - This was probably the most challenging feature to implement because updating data that the row to shift position leads to a poor user experience. I weight tradeoffs and implementation options and selected a delayed update algorithm as the optimal path (for now). See [this story](https://github.com/bwittenberg/manage-users/blob/main/docs/stories/story7ImproveUXWhenTogglingAdminOnGroupedTable.md) for more details about the problem.
 - Animate data by 50px when admin status changes.
   - This was implemented with [react-transition-group](https://reactcommunity.org/react-transition-group/css-transition).
@@ -18,7 +18,7 @@ App to manage user privileges.
   - Used [react-router-dom](https://reactrouter.com/en/main) to manage navigation.
 - Render speed via in memory caching.
   - Apollo Client makes it easy to persist the cache across sessions, but it's harder to see loading states, so I didn't implement it.
-- Deployed to a custom subdomain https://workos.bwittenberg.com.
+- Deployed to a custom subdomain https://manage-users.bwittenberg.com.
 - Some test coverage.
   - I intentionally didn't spend too much time on testing. The most complicated one is for a [hook](https://github.com/bwittenberg/manage-users/blob/main/src/hooks/useDelayedUpdate/useDelayedUpdate.test.ts). I didn't take time to setup playwright or storybook, but I regularly write tests in Jest (using @testing-library and MSW), Storybook (visual tests via Chromatic), and Playwright.
 - Pages, Components, and Hooks are encapsulated within folders.
