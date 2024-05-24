@@ -53,6 +53,8 @@ App to manage user privileges.
 
 # TODOs
 
+- TS with CSS
+  - I didn't setup types for CSS. I have extensive experience with [Emotion](https://emotion.sh/docs/introduction), but recently, I've been using [`@vanilla-extract`](https://vanilla-extract.style/).
 - Custom font
   - I intentionally stuck with the fonts from [`@radix-ui/themes`](https://www.radix-ui.com/). But, I recently used a custom font for my personal side. The code is [here](https://github.com/bwittenberg/monorepo/blob/main/apps/personal/src/components/Fonts/Geist/GeistFont.css.ts).
 - Navigation paths module
@@ -63,6 +65,9 @@ App to manage user privileges.
   - I would implement sorting, filtering, and infinite scroll/pagination so that users can click on column headers and change the sort direction. All queries should run on the server and return results.
 - Improve navigation so that it's collapsible on desktop and mobile
 - Improve build to run lint and tests
+- a11y audit
+- add error and performance monitoring with something like [Sentry](https://docs.sentry.io/platforms/javascript/)
+- add error boundaries
 
 # Evaluation Criteria
 
