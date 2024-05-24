@@ -25,10 +25,10 @@ export const Home = () => {
                 </Section>
                 <Section size="1">
                   <Text as="p">
-                    Nice to meet you. I&apos;ve enjoyed building this app. It
-                    relies on a few common javascript tools and libraries. For
-                    all the details, including an over of the features, check
-                    out the{' '}
+                    Nice to meet you. I enjoyed building this app. It relies on
+                    a few common javascript tools and libraries. For all the
+                    details, including a list of features and TODOs, check out
+                    the{' '}
                     <Link
                       href="https://github.com/bwittenberg/manage-users/blob/main/README.md"
                       target="_blank"
@@ -40,7 +40,7 @@ export const Home = () => {
                 </Section>
                 <Section size="1">
                   <Text as="p">
-                    To learn more about the developer, check out{' '}
+                    To learn more about the developer, visit{' '}
                     <Link
                       href="https://www.linkedin.com/in/benjamin-wittenberg/"
                       target="_blank"
