@@ -1,8 +1,9 @@
 import { Table, Avatar, Checkbox } from '@radix-ui/themes'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useToggleIsAdmin } from 'gql/User'
+import { useCallback, useRef } from 'react'
+import { useSetIsAdmin } from 'gql/User'
 import { ShiftRightTransition } from '../../components/ShiftRightTransition'
 import { HighlightTransition } from 'components/HighlightTransition'
+import { useDelayedUpdate } from 'hooks/useDelayedUpdate'
 
 type Props = {
   id: string
@@ -16,31 +17,14 @@ type Props = {
 export const Row = ({ id, isAdmin, first, last, role, photo }: Props) => {
   const rowRef = useRef<HTMLTableRowElement | null>(null)
   const ref = useRef<HTMLImageElement | null>(null)
-  const toggleIsAdmin = useToggleIsAdmin({
-    userId: id,
-    isAdmin
-  })
-
-  const [tempIsAdmin, setTempIsAdmin] = useState<boolean | null>(null)
-  const timeoutIdRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const handleOnToggleAdmin = useCallback(() => {
-    if (timeoutIdRef.current) {
-      clearTimeout(timeoutIdRef.current)
-    }
-    setTempIsAdmin(!isAdmin)
-    timeoutIdRef.current = setTimeout(() => {
-      toggleIsAdmin()
-      timeoutIdRef.current = setTimeout(() => {
-        setTempIsAdmin(null)
-      }, 2000)
-    }, 1000)
-  }, [isAdmin, toggleIsAdmin])
-
-  useEffect(() => {
-    if (timeoutIdRef.current) {
-      clearTimeout(timeoutIdRef.current)
-    }
-  }, [])
+  const { tempValue: tempIsAdmin, setTempValue: setTempIsAdmin } =
+    useDelayedUpdate({
+      onPersist: useSetIsAdmin({ userId: id })
+    })
+  const handleOnClickIsAdminCheckbox = useCallback(
+    () => setTempIsAdmin(!isAdmin),
+    [setTempIsAdmin, isAdmin]
+  )
 
   return (
     <HighlightTransition nodeRef={rowRef} in={tempIsAdmin !== null}>
@@ -56,7 +40,7 @@ export const Row = ({ id, isAdmin, first, last, role, photo }: Props) => {
         <Table.Cell>
           <Checkbox
             checked={tempIsAdmin ?? isAdmin}
-            onClick={handleOnToggleAdmin}
+            onClick={handleOnClickIsAdminCheckbox}
           />
         </Table.Cell>
       </Table.Row>
