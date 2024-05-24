@@ -2,6 +2,8 @@
 
 App to manage user privileges.
 
+[Check out the 2 minute demo to see a quick overview of the features.](https://drive.google.com/file/d/1JXz_B3mBHBQVIIGA-Is1ke-XObZhjBA1/view?usp=sharing)
+
 # Authors
 
 - Ben Wittenberg ([`@bwittenberg`](https://github.com/bwittenberg))
