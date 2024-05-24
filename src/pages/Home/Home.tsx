@@ -25,10 +25,21 @@ export const Home = () => {
                 </Section>
                 <Section size="1">
                   <Text as="p">
-                    Nice to meet you. I enjoyed building this app. It relies on
-                    a few common javascript tools and libraries. For all the
-                    details, including a list of features and TODOs, check out
-                    the{' '}
+                    This app simulates a user management dashboard. Watch a
+                    quick{' '}
+                    <Link
+                      href="https://drive.google.com/file/d/1JXz_B3mBHBQVIIGA-Is1ke-XObZhjBA1/view?usp=sharing"
+                      target="_blank"
+                    >
+                      2 minute video
+                    </Link>{' '}
+                    for an overview of the features.
+                  </Text>
+                </Section>
+                <Section size="1">
+                  <Text as="p">
+                    For details about the implementation, including a list of
+                    features and TODOs, check out the{' '}
                     <Link
                       href="https://github.com/bwittenberg/manage-users/blob/main/README.md"
                       target="_blank"
