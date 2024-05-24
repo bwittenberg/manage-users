@@ -4,54 +4,58 @@ App to manage user privileges.
 
 # Features
 
-- Deep links to each page
-- In memory caching. Apollo Client makes it easy to persist the cache across sessions, but it's harder to see loading states, so I didn't implement it.
-- The app is associated with a sub domain, `workos.bwittenberg.com`.
-- Tests
-- Locally updated data with a short delay so the user can see what's happening.
-- Mostly organized with a folder per component with an index file. A large barrel file is intentionally avoided.
-- Custom built favicon with the [Radix Person Icon](https://www.figma.com/design/9Df5CaFUEomVzn20gRpaX3/Radix-Icons?node-id=0-1&t=MAYR0JC1BkKKZupH-0).
+- Visit https://workos.bwittenberg.com/users to update the admin status for each user.
+  - Loading states are rendered with skeleton placeholders.
+- Visit https://workos.bwittenberg.com/users/groups to see users grouped by admin status, and to update admin status.
+  - This was probably the most challenging feature to implement because updating data that the row to shift position leads to a poor user experience. I weight tradeoffs and implementation options and selected a delayed update algorithm as the optimal path (for now). See [this story](https://github.com/bwittenberg/manage-users/blob/main/docs/stories/story7ImproveUXWhenTogglingAdminOnGroupedTable.md) for more details about the problem.
+- Animate data by 50px when admin status changes.
+  - This was implemented with [react-transition-group](https://reactcommunity.org/react-transition-group/css-transition).
+- Users are sorted by last name or by admin status and accessed with tabs
+  - Thanks [Radix TabNav](https://www.radix-ui.com/themes/docs/components/tab-nav)!
+- Light/Dark mode
+  - Thanks [Radix Themes](https://www.radix-ui.com/themes/docs/theme/dark-mode)!
+- Deep links for each page.
+  - Used [react-router-dom](https://reactrouter.com/en/main) to manage navigation.
+- Render speed via in memory caching.
+  - Apollo Client makes it easy to persist the cache across sessions, but it's harder to see loading states, so I didn't implement it.
+- Deployed to a custom subdomain https://workos.bwittenberg.com.
+- Some test coverage.
+  - I intentionally didn't spend too much time on testing. The most complicated one is for a [hook](https://github.com/bwittenberg/manage-users/blob/main/src/hooks/useDelayedUpdate/useDelayedUpdate.test.ts). I didn't take time to setup playwright or storybook, but I regularly write tests in Jest (using @testing-library and MSW), Storybook (visual tests via Chromatic), and Playwright.
+- Pages, Components, and Hooks are encapsulated within folders.
+  - Most modules are organized with a folder per component with an index file. A large barrel file is intentionally avoided.
+- Favicon!
+  - Custom built in Figma with the [Radix Person Icon](https://www.figma.com/design/9Df5CaFUEomVzn20gRpaX3/Radix-Icons?node-id=0-1&t=MAYR0JC1BkKKZupH-0).
+- Responsive layout
+  - Desktop is rendered in a two column layout with vertical nav, mobile is a single column with horizontal nav.
+- Keyboard Nav
+  - Thanks to Radix, users can tab through the navigation, user list/group tabs, and across the checkboxes to change admin status.
+
+# Development Features
+
+- Vite, Vitest, TS, and ESlint make for an efficient developer experience with VSCode.
+- Vercel makes it easy to build and deploy
+- Vite and Vercel make it easy to proxy paths to an API with a different origin
 
 # Process
 
 - Many features were developed on branches, and then I opened a PR. The PRs show how the app was built iteratively.
 
-# Requirements
+# TODOs
 
-- [ ] View members in a tab
-- [ ] Toggle admin privileges for member
-  - must use checkbox, when checked, should animate 50px to the right
-- [ ] On the second tab, show the same roster but grouped into “admin” or “standard” groups based on the selections from the first tab
-- [ ] Font must be custom
-- [ ] responsive layout, check on desktop and mobile
-- [ ] render loading states
+- Custom font
+  - I intentionally stuck with the fonts from [`@radix-ui/themes`](https://www.radix-ui.com/). But, I recently used a custom font for my personal side. The code is [here](https://github.com/bwittenberg/monorepo/blob/main/apps/personal/src/components/Fonts/Geist/GeistFont.css.ts).
+- Navigation paths module
+  - I think it's worth pulling all the routes with names and paths into a module with types for each path and names for the pages. It's easy to use strings for each page across the app, and then hard to refactor routes or change route params.
+- Add codegen for GraphQL queries
 
-# Ideas
+  - I set up [codegen](https://the-guild.dev/graphql/codegen) for GraphQL queries before and it improves correctness, Developer Experience, and testing.
 
-- [ ] candidate trivia for login, last try is "how do you pronounce radix"
-- [ ] settings panel to toggle light/dark theme?
-- [ ] deep linking to pages and panels
-- [ ] record video demo
-- [ ] favicon
-- [ ] add themes and theme selection
-- [ ] add navigation paths and types
-- [ ] add codegen for GraphQL types
-- [ ] add a real field to the API for admin or persist cache for experiment
-- [ ] would add sorting and select all to table, and would not be client side sort
-- [ ] deep linking
-- [ ] home should show charts
-- [ ] collapse menu on mobile
-- [ ] landing page for home
+- Add sorting and filtering to the table
 
-# Non-functional
+  - I would implement sorting, filtering, and infinite scroll/pagination so that users can click on column headers and change the sort direction. All queries should run on the server and return results.
 
-- [ ] eslint
-- [ ] tests
-
-# Implementation Notes
-
-- endpoint for data https://front-end-code-challenge.stephenbuilds.workers.dev/
-  - If you try to hit the endpoint directly from your page you’ll likely get a CORS error
+- Improve navigation so that it's collapsible on desktop and mobile
+- Improve build to run lint and tests
 
 # Evaluation Criteria
 
