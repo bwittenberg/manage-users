@@ -1,0 +1,17 @@
+.enter {
+  background-color: inherit;
+}
+.enterActive {
+  background-color: var(--accent-3);
+  transition: background-color 500ms;
+}
+.enterDone {
+  background-color: var(--accent-3);
+}
+.exit {
+  background-color: var(--accent-3);
+  transition: background-color 500ms;
+}
+.exitActive {
+  background-color: inherit;
+}
