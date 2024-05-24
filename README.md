@@ -10,7 +10,6 @@ App to manage user privileges.
 - [ ] On the second tab, show the same roster but grouped into “admin” or “standard” groups based on the selections from the first tab
 - [ ] Font must be custom
 - [ ] responsive layout, check on desktop and mobile
-  - Ben's note: use css container queries?
 - [ ] render loading states
 
 # Ideas
@@ -20,11 +19,12 @@ App to manage user privileges.
 - [ ] deep linking to pages and panels
 - [ ] record video demo
 - [ ] favicon
-- [ ] add themes
+- [ ] add themes and theme selection
 - [ ] add navigation paths and types
 - [ ] add codegen for GraphQL types
 - [ ] add a real field to the API for admin or persist cache for experiment
 - [ ] would add sorting and select all to table, and would not be client side sort
+- [ ] deep linking
 
 # Non-functional
 

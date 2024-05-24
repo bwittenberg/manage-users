@@ -1,11 +1,3 @@
-.appear {
-  left: 50px;
-  position: relative;
-}
-.appearDone {
-  left: 50px;
-  position: relative;
-}
 .enter {
   left: 0;
   position: relative;
@@ -25,6 +17,5 @@
 }
 .exitActive {
   left: 0;
-  position: relative;
   transition: left 200ms;
 }

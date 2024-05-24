@@ -1,13 +1,13 @@
 import { ComponentProps } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import m from './ShiftRightTransition.module.css'
+import m from './HighlightTransition.module.css'
 
 type Props = Pick<
   ComponentProps<typeof CSSTransition>,
   'children' | 'nodeRef' | 'in'
 >
 
-export const ShiftRightTransition = ({
+export const HighlightTransition = ({
   children,
   nodeRef,
   in: animateIn
@@ -16,7 +16,7 @@ export const ShiftRightTransition = ({
     <CSSTransition
       nodeRef={nodeRef}
       in={animateIn}
-      timeout={200}
+      timeout={500}
       classNames={{ ...m }}
     >
       {children}
