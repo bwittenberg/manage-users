@@ -2,6 +2,11 @@
 
 App to manage user privileges.
 
+# Authors
+
+- Ben Wittenberg ([`@bwittenberg`](https://github.com/bwittenberg))
+  - Available for chat on [LinkedIn](https://www.linkedin.com/in/benjamin-wittenberg/)
+
 # Features
 
 - Visit https://manage-users.bwittenberg.com/users to update the admin status for each user.
@@ -16,8 +21,10 @@ App to manage user privileges.
   - Thanks [Radix Themes](https://www.radix-ui.com/themes/docs/theme/dark-mode)!
 - Deep links for each page.
   - Used [react-router-dom](https://reactrouter.com/en/main) to manage navigation.
+- Navigation highlights current page
+  - When navigating between Home, Users, and Groups of users, there are cues in the UI as to which page is active.
 - Render speed via in memory caching.
-  - Apollo Client makes it easy to persist the cache across sessions, but it's harder to see loading states, so I didn't implement it.
+  - Apollo Client makes it [easy to persist the cache](https://www.apollographql.com/docs/react/caching/advanced-topics/#persisting-the-cache) across sessions, but it's harder to see loading states, so I didn't implement it.
 - Deployed to a custom subdomain https://manage-users.bwittenberg.com.
 - Some test coverage.
   - I intentionally didn't spend too much time on testing. The most complicated one is for a [hook](https://github.com/bwittenberg/manage-users/blob/main/src/hooks/useDelayedUpdate/useDelayedUpdate.test.ts). I didn't take time to setup playwright or storybook, but I regularly write tests in Jest (using @testing-library and MSW), Storybook (visual tests via Chromatic), and Playwright.
@@ -36,24 +43,24 @@ App to manage user privileges.
 - Vercel makes it easy to build and deploy
 - Vite and Vercel make it easy to proxy paths to an API with a different origin
 
-# Process
+# Other
 
 - Many features were developed on branches, and then I opened a PR. The PRs show how the app was built iteratively.
+- Lightweight stories are in the [docs folder](https://github.com/bwittenberg/manage-users/tree/main/docs/stories) so that reviewers can see some information about the development process. These are very lightweight, and in a "real" work setting, story data would include more information.
+- State management is done with [Apollo Client](https://www.apollographql.com/docs/react/)
+  - The [ApolloWrapper](https://github.com/bwittenberg/manage-users/blob/main/src/gql/ApolloWrapper/ApolloWrapper.tsx) configures apollo client for the app and uses the [REST Link](https://www.apollographql.com/docs/react/api/link/apollo-link-rest/) to fetch and transform the REST response into GraphQL.
+  - There are simpler ways to fetch data from a rest endpoint (like the `fetch` API), but I'm familiar with Apollo Client, and it provides lots of great DX and hard to build features, like [cache normalization](https://www.apollographql.com/docs/react/caching/overview/#data-normalization).
 
 # TODOs
 
 - Custom font
   - I intentionally stuck with the fonts from [`@radix-ui/themes`](https://www.radix-ui.com/). But, I recently used a custom font for my personal side. The code is [here](https://github.com/bwittenberg/monorepo/blob/main/apps/personal/src/components/Fonts/Geist/GeistFont.css.ts).
 - Navigation paths module
-  - I think it's worth pulling all the routes with names and paths into a module with types for each path and names for the pages. It's easy to use strings for each page across the app, and then hard to refactor routes or change route params.
+  - I think it's worth pulling all the routes with names and paths into a module with types for each path and names for the pages. Without this encapsulation, it's easy to use strings for each page across the app, and then hard to refactor routes or change route params.
 - Add codegen for GraphQL queries
-
   - I set up [codegen](https://the-guild.dev/graphql/codegen) for GraphQL queries before and it improves correctness, Developer Experience, and testing.
-
 - Add sorting and filtering to the table
-
   - I would implement sorting, filtering, and infinite scroll/pagination so that users can click on column headers and change the sort direction. All queries should run on the server and return results.
-
 - Improve navigation so that it's collapsible on desktop and mobile
 - Improve build to run lint and tests
 
