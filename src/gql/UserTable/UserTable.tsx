@@ -3,6 +3,7 @@ import { Table } from '@radix-ui/themes'
 import { Row } from './UserRow'
 import type { User } from 'gql/User'
 import { useMemo } from 'react'
+import { SkeletonRow } from 'components/Table/SkeletonRow'
 
 const UsersListQuery = gql(/* GraphQL */ `
   query UsersListQuery {
@@ -24,9 +25,9 @@ type Props = {
 const defaultSortFn: Props['sortFn'] = (a, b) => a.last.localeCompare(b.last)
 
 export const UserTable = ({ sortFn = defaultSortFn }: Props) => {
-  const { data } = useQuery(UsersListQuery)
+  const { data, loading } = useQuery(UsersListQuery)
 
-  const sorted = useMemo(
+  const sortedRows = useMemo(
     () => data?.users.toSorted(sortFn) ?? [],
     [data?.users, sortFn]
   )
@@ -43,9 +44,17 @@ export const UserTable = ({ sortFn = defaultSortFn }: Props) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {sorted.map((user) => {
-          return <Row key={user.id} {...user} />
-        })}
+        {loading ? (
+          <>
+            {new Array(3).fill(3).map((v, index) => (
+              <SkeletonRow key={index} cellCount={5} />
+            ))}
+          </>
+        ) : (
+          sortedRows.map((user) => {
+            return <Row key={user.id} {...user} />
+          })
+        )}
       </Table.Body>
     </Table.Root>
   )
