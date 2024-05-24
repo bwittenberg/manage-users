@@ -3,8 +3,7 @@ import {
   Flex,
   Link as RadixLink,
   Button,
-  Tooltip,
-  ScrollArea
+  Tooltip
 } from '@radix-ui/themes'
 import { PropsWithChildren, ReactNode } from 'react'
 import { Link, useMatch } from 'react-router-dom'
@@ -14,8 +13,8 @@ import { useTheme } from 'next-themes'
 export const Root = ({ children }: { children: ReactNode }) => {
   return (
     <Grid
-      columns={{ initial: '1', xs: 'max-content 1fr' }}
-      rows="auto"
+      columns={{ initial: '1', xs: 'auto 1fr' }}
+      rows={{ initial: 'min-content auto', xs: '1' }}
       gap="2"
       p="2"
       height="100%"
@@ -42,38 +41,53 @@ const NavLink = ({ children, to }: PropsWithChildren<{ to: string }>) => {
 export const Nav = () => {
   const { resolvedTheme, setTheme } = useTheme()
   return (
-    <Flex direction="column" gap="2">
-      <NavLink to="/">
-        <HomeIcon />
-        Home
-      </NavLink>
-      <NavLink to="/users">
-        <PersonIcon />
-        Users
-      </NavLink>
-      <Flex flexGrow="1" />
-      <Tooltip content="Toggle Theme">
-        <Button
-          variant="outline"
-          onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
-        >
-          {resolvedTheme === 'light' ? (
-            <>
-              <SunIcon />
-              Light
-            </>
-          ) : (
-            <>
-              <MoonIcon />
-              Dark
-            </>
-          )}
-        </Button>
-      </Tooltip>
+    <Flex
+      direction={{ initial: 'row', xs: 'column' }}
+      gap="2"
+      flexGrow="1"
+      wrap="wrap"
+    >
+      <Flex
+        direction={{ initial: 'row', xs: 'column' }}
+        flexGrow="1"
+        gap="2"
+        wrap="wrap"
+      >
+        <NavLink to="/">
+          <HomeIcon />
+          Home
+        </NavLink>
+        <NavLink to="/users">
+          <PersonIcon />
+          Users
+        </NavLink>
+      </Flex>
+      <Flex direction={{ initial: 'row', xs: 'column' }} flexGrow="0" gap="2">
+        <Tooltip content="Toggle Theme">
+          <Button
+            variant="outline"
+            onClick={() =>
+              setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
+            }
+          >
+            {resolvedTheme === 'light' ? (
+              <>
+                <SunIcon />
+                Light
+              </>
+            ) : (
+              <>
+                <MoonIcon />
+                Dark
+              </>
+            )}
+          </Button>
+        </Tooltip>
+      </Flex>
     </Flex>
   )
 }
 
 export const Content = ({ children }: { children: ReactNode }) => {
-  return <ScrollArea>{children}</ScrollArea>
+  return <>{children}</>
 }

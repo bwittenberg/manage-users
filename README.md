@@ -27,6 +27,7 @@ App to manage user privileges.
 - [ ] deep linking
 - [ ] home should show charts
 - [ ] collapse menu on mobile
+- [ ] landing page for home
 
 # Non-functional
 
