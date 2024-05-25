@@ -33,7 +33,7 @@ export const UserTable = ({ sortFn = defaultSortFn }: Props) => {
   )
 
   return (
-    <Table.Root>
+    <Table.Root aria-label="Table of users">
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeaderCell>Avatar</Table.ColumnHeaderCell>

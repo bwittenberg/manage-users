@@ -26,15 +26,22 @@ export const Row = ({ id, isAdmin, first, last, role, photo }: Props) => {
     [setTempIsAdmin, isAdmin]
   )
 
+  const fullName = `${first} ${last}`
+
   return (
     <HighlightTransition nodeRef={rowRef} in={tempIsAdmin !== null}>
-      <Table.Row ref={rowRef}>
-        <Table.RowHeaderCell>
+      <Table.Row ref={rowRef} aria-label={fullName}>
+        <Table.Cell>
           <ShiftRightTransition nodeRef={ref} in={tempIsAdmin !== null}>
-            <Avatar ref={ref} src={photo} fallback={first} />
+            <Avatar
+              ref={ref}
+              src={photo}
+              fallback={first}
+              alt={`Avatar for ${fullName}`}
+            />
           </ShiftRightTransition>
-        </Table.RowHeaderCell>
-        <Table.Cell>{first}</Table.Cell>
+        </Table.Cell>
+        <Table.RowHeaderCell>{first}</Table.RowHeaderCell>
         <Table.Cell>{last}</Table.Cell>
         <Table.Cell>{role}</Table.Cell>
         <Table.Cell>
