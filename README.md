@@ -38,6 +38,8 @@ App to manage user privileges.
   - Desktop is rendered in a two column layout with vertical nav, mobile is a single column with horizontal nav.
 - Keyboard Nav
   - Thanks to Radix, users can tab through the navigation, user list/group tabs, and across the checkboxes to change admin status.
+- Code splitting for improved load times
+  - See PR for a visualization of the chunks: https://github.com/bwittenberg/manage-users/pull/12
 
 # Development Features
 
